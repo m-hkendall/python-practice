@@ -1,3 +1,7 @@
+#Example 8.1, p65-66, Methods in Applied Statistics, Custom for MATH315
+#H0: mean 1 = mean 2 = mean 3
+#Ha: At least one of the three population means is different from the rest
+
 sample1 = [5.0, 17.0, 12.0, 10.0, 4.0]
 sample2 = [19.0, 10.0, 9.0, 7.0, 5.0]
 sample3 = [25.0, 15.0, 12.0, 9.0, 8.0]
@@ -38,4 +42,49 @@ dft = totalSampleSize-1
 print("dft: ", dft)
 
 SSB = (n1*((sampleMean1-totalMean)**2))+(n2*((sampleMean2-totalMean)**2))+(n3*((sampleMean3-totalMean)**2))
+SSB = round(SSB,ndigits=2)
 print("SSB: ", SSB)
+SSW = ((n1-1)*sampleVariance1)+((n2-1)*sampleVariance2)+((n3-1)*sampleVariance3)
+print("SSW: ", SSW)
+
+MSB = SSB/df1
+MSB = round(MSB,ndigits=2)
+print("MSB: ", MSB)
+MSW = SSW/df2
+MSW = round(MSW,ndigits=2)
+print("MSW: ", MSW)
+
+F = MSB/MSW
+F = round(F,ndigits=2)
+print("The F value is: ", F)
+
+F_statistic = [2.81, 3.89, 5.10, 6.93, 8.51]
+alpha = input("Enter the alpha value: ")
+alpha = float(alpha)
+if(alpha==0.1):
+    if(F<F_statistic[0]):
+        print("Given that, ", F, " < ", F_statistic[0], " we fail to reject the null hypothesis; there is not significant evidence that the three means are different.")
+    else:
+        print("Given that, ", F, " > ", F_statistic[0], " we reject the null hypothesis; there is significant evidence that the three means are different.")
+elif(alpha==0.05):
+    if(F<F_statistic[1]):
+        print("Given that, ", F, " < ", F_statistic[1], " we fail to reject the null hypothesis; there is not significant evidence that the three means are different.")
+    else:
+        print("Given that, ", F, " > ", F_statistic[1], " we reject the null hypothesis; there is significant evidence that the three means are different.")
+elif(alpha==0.025):
+    if(F<F_statistic[2]):
+        print("Given that, ", F, " < ", F_statistic[2], " we fail to reject the null hypothesis; there is not significant evidence that the three means are different.")
+    else:
+        print("Given that, ", F, " > ", F_statistic[2], " we reject the null hypothesis; there is significant evidence that the three means are different.")
+elif(alpha==0.010):
+    if(F<F_statistic[3]):
+        print("Given that, ", F, " < ", F_statistic[3], " we fail to reject the null hypothesis; there is not significant evidence that the three means are different.")
+    else:
+        print("Given that, ", F, " > ", F_statistic[3], " we reject the null hypothesis; there is significant evidence that the three means are different.")
+elif(alpha==0.005):
+    if(F<F_statistic[4]):
+        print("Given that, ", F, " < ", F_statistic[4], " we fail to reject the null hypothesis; there is not significant evidence that the three means are different.")
+    else:
+        print("Given that, ", F, " > ", F_statistic[4], " we reject the null hypothesis; there is significant evidence that the three means are different.")
+else:
+    print("Unknown alpha, hypothesis testing incomplete.")
